@@ -76,10 +76,13 @@ void two_rotating_patches_benchmark(const uint8_t* restrict image,
     // Compare two patches with rotated domains with each other as a benchmark.
     float center1_x = 128.0f;
     float center1_y = 128.0f;
-    const float radius1 = 32.0f;
+    const float radius = 128.0f;
+    //const float radius1 = 32.0f;
+    const float radius1 = radius;
     float center2_x = 384.0f;
     float center2_y = 384.0f;
-    const float radius2 = 32.0f;
+    //const float radius2 = 64.0f;
+    const float radius2 = radius1;
     const int PATCH_W = 32;
     const float pi = 3.1415;
     const float angle_step = 2.0 * pi / num_angles;
@@ -96,6 +99,7 @@ void two_rotating_patches_benchmark(const uint8_t* restrict image,
         const float r11 = _cos;
 	float sad = 0.0f; // for computing sum of absolute differences
         for (int ix = 0; ix < PATCH_W; ix++) {
+#pragma unroll 4
             for (int iy = 0; iy < PATCH_W; iy++) {
 		float left_value;
 		{
