@@ -99,7 +99,7 @@ void two_rotating_patches_benchmark(const uint8_t* restrict image,
         const float r11 = _cos;
 	float sad = 0.0f; // for computing sum of absolute differences
         for (int ix = 0; ix < PATCH_W; ix++) {
-#pragma unroll 4
+/*#pragma unroll 4*/
             for (int iy = 0; iy < PATCH_W; iy++) {
 		float left_value;
 		{
